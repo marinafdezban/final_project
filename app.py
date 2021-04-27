@@ -16,9 +16,7 @@ BATCH_SIZE = 32
 IMG_SIZE = (160, 160)
 
 # Setting custom Page Title and Icon with changed layout and sidebar state
-st.title('My first app')
-st.beta_set_page_config(page_title='Face Mask Detector', page_icon='😷',
-                        layout='centered', initial_sidebar_state='expanded')
+st.title('Face Mask Detector')
 
 
 def local_css(file_name):
@@ -109,6 +107,14 @@ def mask_detection() -> object:
     st.markdown('<h1 align="center">😷 Face Mask Detection</h1>', unsafe_allow_html=True)
     st.set_option("deprecation.showfileUploaderEncoding", False)
     st.sidebar.markdown("# Mask Detection on?")
+    st.markdown('<h2 align="center">Detection on Image</h2>', unsafe_allow_html=True)
+    st.markdown("### Upload your image here ⬇")
+    image_file = st.file_uploader("", type=['jpg'])  # upload image
+    if image_file is not None:
+        our_image = Image.open(image_file)  # making compatible to PIL
+        im = our_image.save('./images/out.jpg')
+        saved_image = st.image(image_file, caption='', use_column_width=True)
+        st.markdown('<h3 align="center">Image uploaded successfully!</h3>', unsafe_allow_html=True)
 
 
 mask_detection()
