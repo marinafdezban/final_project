@@ -3,6 +3,8 @@ from PIL import Image, ImageEnhance
 import numpy as np
 import cv2
 import os
+from shutil import copyfile
+from os import walk
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.models import load_model
@@ -14,8 +16,10 @@ BATCH_SIZE = 32
 IMG_SIZE = (160, 160)
 
 # Setting custom Page Title and Icon with changed layout and sidebar state
-st.beta_set_page_config(page_title='Face Mask Detector', page_icon='😷', layout='centered',
-                        initial_sidebar_state='expanded')
+st.title('My first app')
+st.beta_set_page_config(page_title='Face Mask Detector', page_icon='😷',
+                        layout='centered', initial_sidebar_state='expanded')
+
 
 def local_css(file_name):
     """ Method for reading styles.css and applying necessary changes to HTML"""
@@ -24,7 +28,6 @@ def local_css(file_name):
 
 
 def get_images_with_faces():
-    global RGB_img
     # face detector
     print("loading face detector model...")
     prototxtPath = os.path.sep.join([filepath, "deploy.prototxt"])
@@ -91,31 +94,21 @@ def get_images_with_faces():
                     cv2.putText(image, label, (startX, startY - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                     cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
-                    RGB_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    get_images_with_faces()
+                    cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
-    def mask_detection():
-        local_css("css/styles.css")
-        st.markdown('<h1 align="center">😷 Face Mask Detection</h1>', unsafe_allow_html=True)
-        activities = ["Image", "Webcam"]
-        st.set_option('deprecation.showfileUploaderEncoding', False)
-        st.sidebar.markdown("# Mask Detection on?")
-        choice = st.sidebar.selectbox("Choose among the given options:", activities)
 
-        if choice == 'Image':
-            st.markdown('<h2 align="center">Detection on Image</h2>', unsafe_allow_html=True)
-            st.markdown("### Upload your image here ⬇")
-            image_file = st.file_uploader("", type=['jpg'])  # upload image
-            if image_file is not None:
-                our_image = Image.open(image_file)  # making compatible to PIL
-                im = our_image.save('./images/out.jpg')
-                saved_image = st.image(image_file, caption='', use_column_width=True)
-                st.markdown('<h3 align="center">Image uploaded successfully!</h3>', unsafe_allow_html=True)
-                if st.button('Process'):
-                    st.image(RGB_img, use_column_width=True)
+get_images_with_faces()
 
-        if choice == 'Webcam':
-            st.markdown('<h2 align="center">Detection on Webcam</h2>', unsafe_allow_html=True)
-            st.markdown('<h3 align="center">This feature will be available soon!</h3>', unsafe_allow_html=True)
 
-    mask_detection()
+def mask_detection() -> object:
+    """
+
+        :rtype: object
+        """
+    local_css("css/styles.css")
+    st.markdown('<h1 align="center">😷 Face Mask Detection</h1>', unsafe_allow_html=True)
+    st.set_option("deprecation.showfileUploaderEncoding", False)
+    st.sidebar.markdown("# Mask Detection on?")
+
+
+mask_detection()
