@@ -29,7 +29,7 @@ MY_CONFIDENCE = .9
 BATCH_SIZE = 32
 IMG_SIZE = (160, 160)
 
-print('hola')
+print('starting the final project')
 
 def get_images_with_faces():
     # face detector
@@ -69,6 +69,7 @@ def get_images_with_faces():
         blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300), (104.0, 177.0, 123.0))
 
         # detecting faces in images
+        print("computing face detections...")
         face_model.setInput(blob)
         detections = face_model.forward()
 
@@ -87,6 +88,7 @@ def get_images_with_faces():
                     face = face[np.newaxis, ...]
 
                     # predict mask/without mask with the model
+                    print('predicting the results')
                     results = model.predict_on_batch(face)
                     print(results)
                     # print results
