@@ -134,6 +134,8 @@ model_test/
 
 # PyCharm
 .idea
+.idea/workspace.xml
+
 
 trash/trash.py
 trash/
