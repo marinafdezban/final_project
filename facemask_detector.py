@@ -23,13 +23,14 @@ from tensorflow.keras.preprocessing.image import load_img
 from os import walk
 from PIL import Image
 
-filepath = '/home/marina/Bootcamp/final_project/face_detector'
-model_path = '/home/marina/Bootcamp/final_project/model_test/mask_detector.h5'
-MY_CONFIDENCE = .9
+filepath = './face_detector/'
+model_path = './model_test/mask_detector.h5'
+MY_CONFIDENCE = 0.9
 BATCH_SIZE = 32
 IMG_SIZE = (160, 160)
 
 print('starting the final project')
+
 
 def get_images_with_faces():
     # face detector
@@ -41,9 +42,9 @@ def get_images_with_faces():
     model = load_model(model_path)
 
     # loading images
-    mask_images = '/home/marina/Bootcamp/final_project/mask_detection/test/mask/'
-    without_images = '/home/marina/Bootcamp/final_project/mask_detection/test/without_mask/'
-    copy_images = '/home/marina/Bootcamp/final_project/mask_detection/mask_detection/copy/'
+    mask_images = './images/test/mask/'
+    without_images = './images/test/without_mask/'
+    copy_images = './images/copy/'
     f = []
 
     try:
@@ -69,7 +70,7 @@ def get_images_with_faces():
         blob = cv2.dnn.blobFromImage(image, 1.0, (300, 300), (104.0, 177.0, 123.0))
 
         # detecting faces in images
-        print("computing face detections...")
+        print('computing face detections...')
         face_model.setInput(blob)
         detections = face_model.forward()
 
@@ -92,12 +93,12 @@ def get_images_with_faces():
                     results = model.predict_on_batch(face)
                     print(results)
                     # print results
-                    label = "Mask" if results[0][0] < 0 else "No Mask"
-                    color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+                    label = 'Mask' if results[0][0] < 0 else 'No Mask'
+                    color = (0, 255, 0) if label == 'Mask' else (0, 0, 255)
                     cv2.putText(image, label, (startX, startY - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
                     cv2.rectangle(image, (startX, startY), (endX, endY), color, 2)
-        cv2.imshow(image)
+        cv2.imshow('Output', image)
         cv2.waitKey(0)
 
 
