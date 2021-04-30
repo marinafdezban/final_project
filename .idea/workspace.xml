@@ -6,16 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5a266bfd-e016-4ff6-8b0b-b0a4b70c94b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Acquisition/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Acquisition/acquisition.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Reporting/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wrangling/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wrangling/wrangling.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images_test/facemask.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_test/facemask.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mask_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/mask_detector_video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_test/ayuso.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_test/ayuso.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_test/facu_diaz.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/images_test/facu_diaz.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images_test/pedrosanchezmujer.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_test/pedrosanchezmujer.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +84,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.app" />
       <item itemvalue="Python.mask_detector_video" />
+      <item itemvalue="Python.app" />
     </list>
     <recent_temporary>
       <list>
