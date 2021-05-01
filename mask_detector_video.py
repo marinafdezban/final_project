@@ -5,11 +5,14 @@ from imutils.video import VideoStream
 import numpy as np
 import argparse
 import imutils
-import time
 import cv2
 import os
+import time
+import random
+import shutil
 
 filepath = './face_detector/'
+face_classifier = './face_detector/haarcascade_frontalface_default.xml'
 model_path = './model_test/mask_detector.h5'
 MY_CONFIDENCE = 0.9
 BATCH_SIZE = 32
@@ -17,123 +20,50 @@ IMG_SIZE = (160, 160)
 
 print('starting the final project')
 
+src_cap = cv2.VideoCapture(-1)
 
-def detect_and_predict_mask(frame, faceNet, maskNet):
-    # grab the dimensions of the frame and then construct a blob
-    # from it
-    (h, w) = frame.shape[:2]
-    blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300),
-                                 (104.0, 177.0, 123.0))
+while src_cap.isOpened():
+    _, img = src_cap.read()
 
-    # pass the blob through the network and obtain the face detections
-    print('detecting')
-    faceNet.setInput(blob)
-    detections = faceNet.forward()
+    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
-    # initialize our list of faces, their corresponding locations,
-    # and the list of predictions from our face mask network
-    faces = []
-    locs = []
-    preds = []
+    # detect MultiScale / faces
+    faces = face_classifier.detectMultiScale(rgb, 1.3, 5)
 
-    # loop over the detections
-    for i in range(0, detections.shape[2]):
-        # extract the confidence (i.e., probability) associated with
-        # the detection
-        confidence = detections[0, 0, i, 2]
+    # Draw rectangles around each face
+    for (x, y, w, h) in faces:
+        # Save just the rectangle faces in SubRecFaces
+        face_img = rgb[y:y + w, x:x + w]
 
-        # filter out weak detections by ensuring the confidence is
-        # greater than the minimum confidence
-        if confidence > MY_CONFIDENCE:
-            # compute the (x, y)-coordinates of the bounding box for
-            # the object
-            box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-            (startX, startY, endX, endY) = box.astype("int")
+        face_img = cv2.resize(face_img, IMG_SIZE)
+        face_img = face_img / 255.0
+        face_img = np.reshape(face_img, (224, 224, 3))
+        face_img = np.expand_dims(face_img, axis=0)
 
-            # ensure the bounding boxes fall within the dimensions of
-            # the frame
-            (startX, startY) = (max(0, startX), max(0, startY))
-            (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
+        pred = model_path.predict_on_batches(face_img)
+        # print(pred)
 
-            # extract the face ROI, convert it from BGR to RGB channel
-            # ordering, resize it to 224x224, and preprocess it
-            face = frame[startY:endY, startX:endX]
-            face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
-            face = cv2.resize(face, IMG_SIZE)
-            face = img_to_array(face)
-            face = preprocess_input(face)
+        if pred[0][0] == 1:
+            cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cv2.rectangle(img, (x, y - 40), (x + w, y), (0, 0, 255), -1)
+            cv2.putText(img, 'NO MASK', (250, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 4)
+        else:
+            cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
+            cv2.rectangle(img, (x, y - 40), (x + w, y), (0, 255, 0), -1)
+            cv2.putText(img, 'MASK', (250, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4)
 
-            # add the face and bounding boxes to their respective
-            # lists
-            faces.append(face)
-            locs.append((startX, startY, endX, endY))
+        datet = str(datetime.datetime.now())
+        cv2.putText(img, datet, (400, 450), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
 
-    # only make a predictions if at least one face was detected
-    if len(faces) > 0:
-        # for faster inference we'll make batch predictions on *all*
-        # faces at the same time rather than one-by-one predictions
-        # in the above `for` loop
-        faces = np.array(faces, dtype="float32")
-        preds = maskNet.predict(faces, batch_size=32)
+        # Show the image
+        cv2.imshow('LIVE DETECTION', img)
 
-    # return a 2-tuple of the face locations and their corresponding
-    # locations
-    return locs, preds
+        # if key 'q' is press then break out of the loop
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
+# Stop video
+src_cap.release()
 
-# load our serialized face detector model from disk
-print('[INFO] loading face detector model...')
-prototxtPath = os.path.sep.join([filepath, 'deploy.prototxt'])
-weightsPath = os.path.sep.join([filepath,
-                                'res10_300x300_ssd_iter_140000.caffemodel'])
-faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
-
-# load the face mask detector model from disk
-print('[INFO] loading face mask detector model...')
-maskNet = load_model(model_path)
-
-# initialize the video stream and allow the camera sensor to warm up
-print('[INFO] starting video stream...')
-vs = VideoStream(src=0).start()
-time.sleep(2.0)
-
-# loop over the frames from the video stream
-while True:
-    # grab the frame from the threaded video stream and resize it
-    # to have a maximum width of 400 pixels
-    frame = vs.read()
-    frame = imutils.resize(frame, width=400)
-
-    # detect faces in the frame and determine if they are wearing a
-    # face mask or not
-    (locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
-
-    # loop over the detected face locations and their corresponding
-    # locations
-    for (box, pred) in zip(locs, preds):
-        # unpack the bounding box and predictions
-        (startX, startY, endX, endY) = box
-        (mask, withoutMask) = pred
-
-        # determine the class label and color we'll use to draw
-        # the bounding box and text
-        label = 'Mask' if mask > withoutMask else 'No Mask'
-        color = (0, 255, 0) if label == 'Mask' else (0, 0, 255)
-
-        # display the label and bounding box rectangle on the output
-        # frame
-        cv2.putText(frame, label, (startX, startY - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
-        cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
-
-    # show the output frame
-    cv2.imshow('Frame', frame)
-    key = cv2.waitKey(1) & 0xFF
-
-    # if the `q` key was pressed, break from the loop
-    if key == ord("q"):
-        break
-
-# do a bit of cleanup
+# Close all started windows
 cv2.destroyAllWindows()
-vs.stop()

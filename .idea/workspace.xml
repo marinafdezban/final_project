@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5a266bfd-e016-4ff6-8b0b-b0a4b70c94b8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images_test/ayuso.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_test/ayuso.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images_test/facu_diaz.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/images_test/facu_diaz.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images_test/pedrosanchezmujer.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/images_test/pedrosanchezmujer.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mask_detector_video.py" beforeDir="false" afterPath="$PROJECT_DIR$/mask_detector_video.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app.py" />
   </component>
-  <component name="RunManager" selected="Python.app">
+  <component name="RunManager" selected="Python.mask_detector_video">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="final_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
