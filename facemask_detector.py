@@ -91,7 +91,6 @@ def get_images_with_faces():
                     # predict mask/without mask with the model
                     print('predicting the results')
                     results = model.predict_on_batch(face)
-                    print(results)
                     # print results
                     label = 'Mask' if results[0][0] < 0 else 'No Mask'
                     color = (0, 255, 0) if label == 'Mask' else (0, 0, 255)
