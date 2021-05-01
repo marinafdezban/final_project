@@ -91,7 +91,7 @@ def mask_detection():
     if choice == 'Image':
         st.markdown('<h2 align="center">Detection on Image</h2>', unsafe_allow_html=True)
         st.markdown("### Upload your image here ⬇")
-        image_file = st.file_uploader("", type=['jpg', 'jpeg'])  # upload image
+        image_file = st.file_uploader("", type=['jpg', 'jpeg', 'png'])  # upload image
         if image_file is not None:
             our_image = Image.open(image_file)  # making compatible to PIL
             im = our_image.save('./images_test/facu_diaz.jpeg')
