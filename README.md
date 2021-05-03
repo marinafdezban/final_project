@@ -93,7 +93,7 @@ $ streamlit run app.py
 
 ## :mailbox: Contact info
 
-For questions, suggestions and other inquiries... ping me [here] (m.fernandezban@gmail.com)
+For questions, suggestions and other inquiries... ping me [here](m.fernandezban@gmail.com).
 
 
 
