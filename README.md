@@ -1,4 +1,4 @@
-# Face-Mask Detection
+# Face-Mask Detection :mask:
 
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555)](https://www.linkedin.com/in/marinafernandezbanda/)
 
@@ -21,13 +21,24 @@ Our pipeline consists of three steps:
   3. The output is an annotated image with the prediction.
   
   
-### 🎭 Model's performance
+### 🚀 Model's performance
 
 The face-mask model is trained with 900 images but in order to increase their volume it was used data augmentation and the weights of the MobileNetV2 model. More about this architecture can be found [here](https://arxiv.org/pdf/1801.04381.pdf). 
 
 The overall performance of different metrics is shown below.
 
 **CHARTS**
+
+## :star: Streamlit app
+
+Face Mask Detector with images and video using Tensorflow & Streamlit Webrtc
+
+command
+```
+$ streamlit run app.py 
+```
+
+**PHOTOS**
 
 ## :warning: Technology Stack
 
@@ -72,9 +83,17 @@ The overall performance of different metrics is shown below.
 
 ```
 
+
+## :eyes: Next Steps
+
+- Upload the streamlit ad-hoc app to Amazon Web Services. 
+- Keep improving the performance of face and face-mask AI model. 
+- Keep improving the detection of faces with low light and low quality pictures/webcams.
+
+
 ## :mailbox: Contact info
 
-For questions, suggestions and other inquiries... here is my [email address] (m.fernandezban@gmail.com)
+For questions, suggestions and other inquiries... ping me [here] (m.fernandezban@gmail.com)
 
 
 
