@@ -1,22 +1,18 @@
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-from tensorflow.keras.preprocessing.image import img_to_array
-from tensorflow.keras.models import load_model
-from imutils.video import VideoStream
-import numpy as np
-import argparse
-import imutils
-import cv2
 import os
 import time
-import random
-import shutil
+import cv2
+import imutils
+import numpy as np
+from imutils.video import VideoStream
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import img_to_array
 
 filepath = './face_detector/'
-face_classifier = './face_detector/haarcascade_frontalface_default.xml'
-model_path = './model_test/mask_detector.h5'
+model_path = './model_test/mask_detector.model'
 MY_CONFIDENCE = 0.9
 BATCH_SIZE = 32
-IMG_SIZE = (160, 160)
+IMG_SIZE = (224, 224)
 
 print('starting the final project')
 
@@ -137,5 +133,6 @@ while True:
         break
 
 # do a bit of cleanup
+print('[INFO] loading faces and mask detection')
 cv2.destroyAllWindows()
 vs.stop()
