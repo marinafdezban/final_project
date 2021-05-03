@@ -26,3 +26,58 @@ Our pipeline consists of three steps:
 The face-mask model is trained with 900 images but in order to increase their volume it was used data augmentation and the weights of the MobileNetV2 model. More about this architecture can be found [here](https://arxiv.org/pdf/1801.04381.pdf). 
 
 The overall performance of different metrics is shown below.
+
+**CHARTS**
+
+## :warning: Technology Stack
+
+- OpenCV
+- Caffe-based face detector
+- Keras
+- TensorFlow
+- MobileNetV2
+- Streamlit & Streamlit Webrtc
+
+
+## :open_file_folder: Folder Structure
+
+``` 
+└── final_project
+    ├── __trash__
+    ├── .gitignore
+    ├── requirements.txt
+    ├── README.md
+    ├── main.py
+    ├── presentation
+    │   └── dataproject1.pdf
+    ├── notebooks
+    │   └── final.ipynb
+    ├── p_acquisition
+    │   ├── __init__.py
+    │   └── m_acquisition.py
+    ├── p_wrangling
+    │   ├── __init__.py
+    │   └── m_wrangling.py
+    ├── p_analysis
+    │   ├── __init__.py
+    │   └── m_analysis.py
+    ├── p_reporting
+    │   ├── __init__.py
+    │   └── m_reporting.py
+    ├── results
+    │	├── {country}results.csv
+    │	└── all countries results.csv
+    └── data
+        └── raw_data_project_m1.db
+
+```
+
+## :mailbox: Contact info
+
+For questions, suggestions and other inquiries... here is my [email address] (m.fernandezban@gmail.com)
+
+
+
+
+
+
