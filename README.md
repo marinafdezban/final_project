@@ -25,9 +25,11 @@ Our pipeline consists of three steps:
 
 The face-mask model is trained with 900 images but in order to increase their volume it was used data augmentation and the weights of the MobileNetV2 model. More about this architecture can be found [here](https://arxiv.org/pdf/1801.04381.pdf). 
 
-The overall performance of different metrics is shown below.
+The facemask model has an accuracy of 98% and a AUC of 92%.
 
-**CHARTS**
+<p align="middle">
+    <img src="./plots/accuracy.png" height=300 width=450>
+    <img src="./plots/roc_classification_rate.png" height=300 width=450>
 
 ## :star: Streamlit app
 
