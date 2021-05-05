@@ -27,7 +27,8 @@ The face-mask model is trained with 900 images but in order to increase their vo
 
 The facemask model has an accuracy of 98% and a AUC of 92%.
 
-    <img src="./plots/accuracy.png" height=300 width=450>
+<p align="middle">
+    <img src="./plots/accuracy.png">
     <img src="./plots/roc_classification_rate.png" height=300 width=450>
 
 ## :star: Streamlit app
