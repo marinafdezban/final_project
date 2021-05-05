@@ -29,6 +29,7 @@ The facemask model has an accuracy of 98% and a AUC of 92%.
 
 <p align="middle">
     <img src="./plots/accuracy.png">
+    
     <img src="./plots/roc_classification_rate.png" height=300 width=450>
 
 ## :star: Streamlit app
@@ -56,32 +57,20 @@ $ streamlit run app.py
 
 ``` 
 └── final_project
-    ├── __trash__
-    ├── .gitignore
-    ├── requirements.txt
-    ├── README.md
-    ├── main.py
-    ├── presentation
-    │   └── dataproject1.pdf
+    ├── css
+    │   └── styles.css
+    ├── face_detector
+    │	├── deploy.prototxt
+    │	└── res10_300x300_ssd_iter_140000.caffemodel
+    ├── images_test
     ├── notebooks
-    │   └── final.ipynb
-    ├── p_acquisition
-    │   ├── __init__.py
-    │   └── m_acquisition.py
-    ├── p_wrangling
-    │   ├── __init__.py
-    │   └── m_wrangling.py
-    ├── p_analysis
-    │   ├── __init__.py
-    │   └── m_analysis.py
-    ├── p_reporting
-    │   ├── __init__.py
-    │   └── m_reporting.py
-    ├── results
-    │	├── {country}results.csv
-    │	└── all countries results.csv
-    └── data
-        └── raw_data_project_m1.db
+    ├── plots
+    ├── .gitignore
+    ├── README.md
+    ├── app.py
+    ├── facemask_detector.py
+    ├── mask_detector_video.py
+    └── requirements.txt
 
 ```
 
