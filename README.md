@@ -40,7 +40,11 @@ command
 $ streamlit run app.py 
 ```
 
-**PHOTOS**
+**IMAGES**
+<p align="middle">
+    <img src="./images_test/prueba_1.png">
+    <img src="./images_test/prueba_2.png">
+    <img src="./images_test/prueba_3.png">
 
 ## :warning: Technology Stack
 
