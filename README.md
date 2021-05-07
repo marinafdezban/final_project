@@ -46,6 +46,13 @@ $ streamlit run app.py
     <img src="./images_test/prueba_2.png">
     <img src="./images_test/prueba_3.png">
 
+
+**VIDEO**
+<p align="middle">
+    <img src="./images_test/video_nomask.png">
+    <img src="./images_test/video_mask.png">
+
+
 ## :warning: Technology Stack
 
 - OpenCV
