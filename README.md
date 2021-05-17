@@ -25,7 +25,7 @@ Our pipeline consists of three steps:
 
 The face-mask model is trained with 900 images but in order to increase their volume it was used data augmentation and the weights of the MobileNetV2 model. More about this architecture can be found [here](https://arxiv.org/pdf/1801.04381.pdf). 
 
-The facemask model has an accuracy of 98% and a AUC of 92%.
+The facemask model has an accuracy of 98% and a AUC of 91%.
 
 <p align="middle">
     <img src="./plots/accuracy.png">
